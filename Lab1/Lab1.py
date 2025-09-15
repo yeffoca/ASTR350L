@@ -179,7 +179,7 @@ r = np.sqrt(lum / (4*np.pi*const.sigma_sb.cgs.value*(temp**4)))
 final_vals_list.append(('Ka ʻōnohi aliʻi', "{:.2e}".format(total_flux),
                         "{:.2e}".format(lum), "{:.2e}".format(r), temp, abs(temp-7740)))
 
-# Plotting Procyon B
+# Plotting Procyon B on graph with other stars
 plt.plot(procb_lambda_arr_mu, procb_flux_list, label=f'Ka ʻōnohi aliʻi: {temp} K')
 
 plt.xlim(0.36, 4)
@@ -187,10 +187,11 @@ plt.legend()
 plt.ylabel('Spectral Flux Density [cgs]')
 plt.xlabel('Wavelength [microns]')
 plt.title('B_lambda vs Wavelength')
-plt.show()
 plt.savefig('Blambda_vs_wavelength.png')
+plt.show()
 plt.clf()
 
+# Producing table of all calculated values
 final_vals_df = pd.DataFrame(final_vals_list, columns=col_names)
 plt.subplots(figsize=(12, 4))
 plt.axis('off')
@@ -198,8 +199,8 @@ plt.table(cellText=final_vals_df.values,
           colLabels=final_vals_df.columns,
           loc='center',
           cellLoc='center').scale(1.2, 3)
-plt.show()
 plt.savefig('calculated_values_table.png')
+plt.show()
 plt.clf()
 
 # Plotting Procyon B on its own to get a better representation of its SED
