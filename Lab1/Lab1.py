@@ -180,7 +180,7 @@ final_vals_list.append(('Ka ʻōnohi aliʻi', "{:.2e}".format(total_flux),
                         "{:.2e}".format(lum), "{:.2e}".format(r), temp, abs(temp-7740)))
 
 # Plotting Procyon B
-plt.plot(procb_lambda_arr_mu, procb_flux_list, label=f'Ka ʻōnohi aliʻi: {temp}')
+plt.plot(procb_lambda_arr_mu, procb_flux_list, label=f'Ka ʻōnohi aliʻi: {temp} K')
 
 plt.xlim(0.36, 4)
 plt.legend()
@@ -202,9 +202,15 @@ plt.show()
 plt.savefig('calculated_values_table.png')
 plt.clf()
 
-
-
-
+# Plotting Procyon B on its own to get a better representation of its SED
+plt.plot(procb_lambda_arr_mu, procb_flux_list, label=f'Ka ʻōnohi aliʻi: {temp} K')
+plt.legend()
+plt.ylabel('Spectral Flux Density [cgs]')
+plt.xlabel('Wavelength [microns]')
+plt.title('B_lambda vs Wavelength (Ka ʻōnohi aliʻi)')
+plt.savefig('Blambda_vs_wavelength_procb.png')
+plt.show()
+plt.clf()
 
 
 
