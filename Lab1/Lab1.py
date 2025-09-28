@@ -155,7 +155,7 @@ for star_flux_tup in star_flux_tup_list:
     filters_filtered = list(filters[valid_indices])
     star_flux_filtered = star_flux[valid_indices]
 
-    S0 = (star_flux_filtered[filters_filtered.index('V')] /
+    S0 = (star_flux_filtered[filters_filtered.index('V')] /  # Scaling factor to account for distance from Earth
           planck_function(lambda_cm_filtered[filters_filtered.index('V')], T0))
     popt, pcov = curve_fit(scaled_planck, lambda_cm_filtered, star_flux_filtered, p0=[T0, S0])
 
@@ -170,7 +170,7 @@ for star_flux_tup in star_flux_tup_list:
     plt.plot(lambda_mu_filtered, star_flux_filtered, label=f'{name}: {temp} K')
 
 # Finding temperature, total flux, and radius for Procyon B
-S0 = (procb_flux_list[7] / planck_function(procb_lambda_arr_cm[7], T0))
+S0 = (procb_flux_list[7] / planck_function(procb_lambda_arr_cm[7], T0))  # Using I band since data does not have V band
 popt, pcov = curve_fit(scaled_planck, procb_lambda_arr_cm, procb_flux_list, p0=[T0, S0])
 temp = int(popt[0])
 total_flux = simpson(procb_flux_list, procb_lambda_arr_cm)
